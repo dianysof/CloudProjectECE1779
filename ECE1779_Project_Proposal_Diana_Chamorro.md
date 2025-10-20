@@ -87,19 +87,19 @@ To manage data efficiently and ensure the system remains stateful, the applicati
 
 Below is a breakdown of the main tables:
 
-Users:  
+# Users:  
 This table stores information about each registered user, including their unique ID, email address, encrypted password, and the date their account was created. It ensures that each user can securely log in and manage only their own monitored endpoints.  
 (Columns: id, email, password_hash, created_at)
 
-Endpoints:  
+# Endpoints:  
 Each endpoint represents a website, server, or API that a user wants to monitor. This table links directly to the Users table through a user_id foreign key, ensuring each endpoint is tied to its owner. It stores the endpoint’s name, URL, and creation date.  
 (Columns: id, user_id, name, url, created_at)
 
-Measurements:  
+# Measurements:  
 This is the heart of the monitoring system. Each time the background worker runs, it records metrics for every endpoint, such as latency (in ms), current status (“up” or “down”), and a timestamp. Over time, this table builds a historical log that powers the performance charts and trends on the dashboard.  
 (Columns: id, endpoint_id, latency_ms, status, timestamp)
 
-Alerts:  
+# Alerts:  
 Whenever an endpoint’s performance falls outside acceptable limits, the system generates an alert. This table stores those alerts with a message, timestamp, and a flag indicating whether the issue has been resolved. It helps users quickly identify and respond to recurring or critical problems.  
 (Columns: id, endpoint_id, message, timestamp, resolved)
 
